@@ -43,4 +43,16 @@ public class BinarySearchTest {
         int[] sequence = {1,2,3,4,5};
         Assert.assertThat(false, is(equalTo(BinarySearch.search(6, sequence).isFound())));
     }
+
+    @Test
+    public void sequenceIsEmpty(){
+        int[] sequence = {};
+        Assert.assertThat(false, is(equalTo(BinarySearch.search(1, sequence).isFound())));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void sequenceIsNull(){
+        int[] sequence = {};
+        BinarySearch.search(1, sequence);
+    }
 }
