@@ -44,15 +44,15 @@ public class BinarySearchTest {
         Assert.assertThat(false, is(equalTo(BinarySearch.search(6, sequence).isFound())));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void sequenceIsEmpty(){
         int[] sequence = {};
-        Assert.assertThat(false, is(equalTo(BinarySearch.search(1, sequence).isFound())));
+        BinarySearch.search(1, sequence);
     }
 
     @Test(expected = NullPointerException.class)
     public void sequenceIsNull(){
-        int[] sequence = {};
+        int[] sequence = null;
         BinarySearch.search(1, sequence);
     }
 }
