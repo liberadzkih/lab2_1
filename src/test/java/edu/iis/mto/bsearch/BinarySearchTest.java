@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
     private int[] seqshort = {4};
-    private int[] seqlong = {4,5,7,9,11};
+    private int[] seqlong = {4, 5, 7, 9, 11};
 
     @Test
-    void searchforelement_seqlen1_elementisinseq() {
+    void searchForElement_SeqLen1_ElementIsInSeq() {
         int i = 0;
         int elementToBeFound = seqshort[i];
 
@@ -21,7 +21,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchforelement_seqlen1_elementisNOTotinseq() {
+    void searchForElement_SeqLen1_ElementIsNototInSeq() {
         int elementToBeFound = 3;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqshort);
@@ -30,7 +30,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchforelement_seqlenlongerthen1_elementisfirst() {
+    void searchForElement_SeqLenLongerThan1_ElementIsFirst() {
         int i = 0;
         int elementToBeFound = 4;
 
@@ -42,7 +42,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchforelement_seqlenlongerthen1_elementislast() {
+    void searchForElement_SeqLenLongerThen1_ElementIsLast() {
         int i = 4;
         int elementToBeFound = seqlong[i];
 
@@ -53,7 +53,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchforelement_seqlenlongerthen1_elementiscenter() {
+    void searchForElement_SeqLenLongerThan1_ElementIsCenter() {
         int i = 2;
         int elementToBeFound = seqlong[i];
 
@@ -65,7 +65,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchforelement_seqlenlongerthen1_elementisNOTinsequence() {
+    void searchForElement_SeqLenLongerThan1_ElementIsNotInSequence() {
         int elementToBeFound = 15;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
