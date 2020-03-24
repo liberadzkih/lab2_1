@@ -50,6 +50,14 @@ public class BinarySearchTest {
         assertEquals(true, searchResult.isFound());
         assertEquals(positionExpected, searchResult.getPosition());
     }
-   
+
+    @Test
+    void elementIsNotInTheSeq2() {
+        int[] seq = {1, 2, 3, 4, 5};
+        int positionExpected = -1;
+        SearchResult searchResult = BinarySearch.create().search(6, seq);
+        assertEquals(false, searchResult.isFound());
+        assertEquals(positionExpected, searchResult.getPosition());
+    }
 
 }
