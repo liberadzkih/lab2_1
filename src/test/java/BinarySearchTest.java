@@ -33,5 +33,12 @@ public class BinarySearchTest {
         assertEquals(positionExpected, searchResult.getPosition());
     }
 
-    
+    @Test
+    void elementIsTheLastInTheSeq() {
+        int[] seq = {1, 2, 3, 4};
+        int positionExpected = 3;
+        SearchResult searchResult = BinarySearch.create().search(4, seq);
+        assertEquals(true, searchResult.isFound());
+        assertEquals(positionExpected, searchResult.getPosition());
+    }
 }
