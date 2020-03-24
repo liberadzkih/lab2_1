@@ -60,4 +60,14 @@ public class BinarySearchTest {
         assertEquals(positionExpected, searchResult.getPosition());
     }
 
+    @Test
+    void squenceIsEmpty() {
+        int[] seq = {};
+        int positionExpected = -1;
+        SearchResult searchResult = BinarySearch.create().search(2, seq);
+        assertEquals(false, searchResult.isFound());
+        assertEquals(positionExpected, searchResult.getPosition());
+    }
+
+
 }
