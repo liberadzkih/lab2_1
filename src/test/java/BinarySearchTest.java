@@ -3,71 +3,69 @@ import edu.iis.mto.bsearch.BinarySearch;
 import edu.iis.mto.bsearch.SearchResult;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BinarySearchTest {
+    int[] seqWithOneelement = {1};
+    int[] seq2 = {1, 2, 3, 4, 5};
+
     @Test
     void elemntIsInTheSeq() {
-        int[] seq = {1};
         int positionExpected = 0;
-        SearchResult searchResult = BinarySearch.create().search(1, seq);
-        assertEquals(true, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+        SearchResult searchResult = BinarySearch.create().search(1, seqWithOneelement);
+        assertThat(true, equalTo(searchResult.isFound()));
+        assertThat(positionExpected, equalTo(searchResult.getPosition()));
+
     }
 
     @Test
     void elementIsNotInTheSeq() {
-        int[] seq = {1};
         int positionExpected = -1;
-        SearchResult searchResult = BinarySearch.create().search(2, seq);
-        assertEquals(false, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+        SearchResult searchResult = BinarySearch.create().search(2, seqWithOneelement);
+        assertThat(false, equalTo(searchResult.isFound()));
+        assertThat(positionExpected, equalTo(searchResult.getPosition()));
     }
 
     @Test
     void elementIsTheFirstInTheSeq() {
-        int[] seq = {1, 2, 3, 4};
         int positionExpected = 0;
-        SearchResult searchResult = BinarySearch.create().search(1, seq);
-        assertEquals(true, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+        SearchResult searchResult = BinarySearch.create().search(1, seq2);
+        assertThat(true, equalTo(searchResult.isFound()));
+        assertThat(positionExpected, equalTo(searchResult.getPosition()));
     }
 
     @Test
     void elementIsTheLastInTheSeq() {
-        int[] seq = {1, 2, 3, 4};
-        int positionExpected = 3;
-        SearchResult searchResult = BinarySearch.create().search(4, seq);
-        assertEquals(true, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+        int positionExpected = 4;
+        SearchResult searchResult = BinarySearch.create().search(5, seq2);
+        assertThat(true, equalTo(searchResult.isFound()));
+        assertThat(positionExpected, equalTo(searchResult.getPosition()));
     }
 
     @Test
     void elementIsTheMiddleInTheSeq() {
-        int[] seq = {1, 2, 3, 4, 5};
         int positionExpected = 2;
-        SearchResult searchResult = BinarySearch.create().search(3, seq);
-        assertEquals(true, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+        SearchResult searchResult = BinarySearch.create().search(3, seq2);
+        assertThat(true, equalTo(searchResult.isFound()));
+        assertThat(positionExpected, equalTo(searchResult.getPosition()));
     }
 
     @Test
     void elementIsNotInTheSeq2() {
-        int[] seq = {1, 2, 3, 4, 5};
         int positionExpected = -1;
-        SearchResult searchResult = BinarySearch.create().search(6, seq);
-        assertEquals(false, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+        SearchResult searchResult = BinarySearch.create().search(6, seq2);
+        assertThat(false, equalTo(searchResult.isFound()));
+        assertThat(positionExpected, equalTo(searchResult.getPosition()));
     }
 
     @Test
-    void squenceIsEmpty() {
-        int[] seq = {};
-        int positionExpected = -1;
-        SearchResult searchResult = BinarySearch.create().search(2, seq);
-        assertEquals(false, searchResult.isFound());
-        assertEquals(positionExpected, searchResult.getPosition());
+    void squenceIsEmptyException() {
+        int[] seqEmpty = {};
+        assertThrows(IllegalArgumentException.class, () -> {
+            BinarySearch.create().search(2, seqEmpty);
+        });
     }
-
 
 }
