@@ -66,4 +66,22 @@ class BinarySearchTest {
         assertEquals(elementToBeFound, seq[i]);
     }
 
+    @Test
+    void searchforelement_seqlenlongerthen1_elementiscenter() {
+        int elementToBeFound = 7;
+        int i = 2;
+        int[] seq = new int[5];
+        seq[0] = 4;
+        seq[1] = 5;
+        seq[2] = elementToBeFound;
+        seq[3] = 9;
+        seq[4] = 11;
+
+
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        assertEquals(true, searchResult.isFound());
+        assertEquals(i, searchResult.getPosition());
+        assertEquals(elementToBeFound, seq[i]);
+    }
+
 }
