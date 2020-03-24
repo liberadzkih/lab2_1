@@ -73,4 +73,13 @@ class BinarySearchTest {
         assertEquals(-1, searchResult.getPosition());
     }
 
+    @Test
+    void searchForElement_testForSeqLenEqualToZero() {
+        try {
+            BinarySearch.create().search(4, new int[0]);
+            fail("Expected IllegalArgumentExceptiom");
+        } catch (IllegalArgumentException e) {
+            //ignore this exception is expected
+        }
+    }
 }
