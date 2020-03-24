@@ -68,4 +68,11 @@ public class BinarySearchTest {
         });
     }
 
+    @Test
+    void squenceIsNullException() {
+        int[] seqEmpty = null;
+        assertThrows(NullPointerException.class, () -> {
+            BinarySearch.create().search(2, seqEmpty);
+        });
+    }
 }
