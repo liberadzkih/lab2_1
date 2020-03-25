@@ -97,4 +97,42 @@ public class SearchTests {
         Assertions.assertNotEquals(-1, searchResult.getPosition());
         Assertions.assertEquals(key, mixedElementsSequence[searchResult.getPosition()]);
     }
+
+    @Test
+    public void keyInUnsortedSequence() {
+        int key = 256;
+        int[] sequence = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 256, 11 };
+        SearchResult searchResult = binarySearch.search(key, sequence);
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertNotEquals(-1, searchResult.getPosition());
+        Assertions.assertEquals(key, sequence[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void keyInUnsortedSequence2() {
+        int key = -10;
+        int[] sequence = { -10, -20, 3, 4, 5, 6, 7, 8, 9, 256, 11 };
+        SearchResult searchResult = binarySearch.search(key, sequence);
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertNotEquals(-1, searchResult.getPosition());
+        Assertions.assertEquals(key, sequence[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void keyNotInUnsortedSequence() {
+        int key = 2;
+        int[] sequence = { 1, 2, -30, 4, 5, 6, 7, 8, 9, 10, 11 };
+        SearchResult searchResult = binarySearch.search(key, sequence);
+        Assertions.assertFalse(searchResult.isFound());
+        Assertions.assertEquals(-1, searchResult.getPosition());
+    }
+
+    @Test
+    public void keyNotInUnsortedSequence2() {
+        int key = 10;
+        int[] sequence = { 1, 2, 3, 4, 5, 6, 7, 8, 256, 10, 11 };
+        SearchResult searchResult = binarySearch.search(key, sequence);
+        Assertions.assertFalse(searchResult.isFound());
+        Assertions.assertEquals(-1, searchResult.getPosition());
+    }
 }
