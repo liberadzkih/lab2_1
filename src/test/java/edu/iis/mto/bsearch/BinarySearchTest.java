@@ -54,4 +54,11 @@ class BinarySearchTest {
         assertFalse(sr.isFound()); //false
         assertEquals(-1,sr.getPosition()); //i = getPosition()
     }
+
+    @Test void searchForExistingElem_emptyElemSequence_ElemIsNotInSequence() {
+        int seq[]={}; //pusta sequence
+        SearchResult sr = BinarySearch.create().search(key,seq);
+        assertFalse(sr.isFound()); //false
+        assertEquals(-1,sr.getPosition()); //i = getPosition()
+    }
 }
