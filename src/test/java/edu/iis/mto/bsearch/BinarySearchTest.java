@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 class BinarySearchTest {
 
     int key=6;
-    @Test void ifIsInSequence() {
+    @Test void searchForExistingElem_singleElemSequence_ElemIsInSequence() { //nazwa odzwierciedla przypadek testowy
         int seq[]={6};//dlugosc sekwencji = jeden
         SearchResult sr = BinarySearch.create().search(key,seq);
         assertTrue(sr.isFound());//asercja sprawdzajaca prawdziwosc warunku
@@ -18,21 +18,21 @@ class BinarySearchTest {
         assertEquals(key,seq[seq.length-1]); //key=seq[i]
     }
 
-    @Test void ifIsNotInSequence() {
+    @Test void searchForExistingElem_singleElemSequence_ElemIsNotInSequence() {
         int seq[]={4};//dlugosc sekwencji = jeden
         SearchResult sr = BinarySearch.create().search(key,seq);
         assertFalse(sr.isFound());
         assertEquals(-1,sr.getPosition());
     }
 
-    @Test void ifIsTheFirstElement() { //liczac pozycje od 0
+    @Test void searchForExistingElem_longerElemSequence_ElemIsTheFirstInSequence() { //liczac pozycje od 0
         int seq[]={6,7,8,9,10};
         SearchResult sr = BinarySearch.create().search(key,seq);
         assertTrue(sr.isFound()); //true
         assertEquals(0,sr.getPosition()); //i = getPosition()
         assertEquals(key,seq[0]); //key=seq[i]
     }
-    @Test void ifIsTheLastElement() { //liczac pozycje od 0
+    @Test void searchForExistingElem_longerElemSequence_ElemIsTheLastInSequence() { //liczac pozycje od 0
         int seq[]={2,3,4,5,6};
         SearchResult sr = BinarySearch.create().search(key,seq);
         assertTrue(sr.isFound()); //true
@@ -40,7 +40,7 @@ class BinarySearchTest {
         assertEquals(key,seq[seq.length-1]); //key=seq[i]
     }
 
-    @Test void ifIfTheMiddleElement() {
+    @Test void searchForExistingElem_longerElemSequence_ElemIsInTheMiddleOfSequence() {
         int seq[]={4,5,6,7,8,9};
         SearchResult sr = BinarySearch.create().search(key,seq);
         assertTrue(sr.isFound()); //true
@@ -48,7 +48,7 @@ class BinarySearchTest {
         assertEquals(key,seq[(seq.length-1)/2]); //key=seq[i]
     }
 
-    @Test void ifIsNotInLongerSequence() {
+    @Test void searchForExistingElem_longerElemSequence_ElemIsNotInSequence() {
         int seq[]={7,8,9};
         SearchResult sr = BinarySearch.create().search(key,seq);
         assertFalse(sr.isFound()); //false
