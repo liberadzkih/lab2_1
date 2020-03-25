@@ -62,7 +62,7 @@ class BinarySearchTest {
         assertEquals(-1,sr.getPosition()); //i = getPosition()
     }
 
-    @Test void searchForExistingElem_sequenceIsNull_ElemIsNotInSequence() {
+    @Test void searchForExistingElem_sequenceIsNull_IllegalArgException() {
         int seq[]=null;
         try{
            BinarySearch.create().search(key,seq);
