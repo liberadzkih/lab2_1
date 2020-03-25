@@ -10,6 +10,7 @@ public class SearchTests {
     private BinarySearch binarySearch = BinarySearch.create();
     private int[] singleElementSequence = { 3 };
     private int[] multipleElementsSequence = { 1, 2, 3, 4, 5, 6, 7 };
+    private int[] mixedElementsSequence = { -3, -2, -1, 0, 1 };
 
     @Test
     public void nullSequenceTest() {
@@ -32,7 +33,7 @@ public class SearchTests {
         int key = 3;
         SearchResult searchResult = binarySearch.search(key, singleElementSequence);
         Assertions.assertTrue(searchResult.isFound());
-        Assertions.assertEquals(0, searchResult.getPosition());
+        Assertions.assertNotEquals(-1, searchResult.getPosition());
         Assertions.assertEquals(key, singleElementSequence[searchResult.getPosition()]);
     }
 
@@ -77,5 +78,23 @@ public class SearchTests {
         SearchResult searchResult = binarySearch.search(key, multipleElementsSequence);
         Assertions.assertFalse(searchResult.isFound());
         Assertions.assertEquals(-1, searchResult.getPosition());
+    }
+
+    @Test
+    public void neutralKeyInMixedElementsSequence() {
+        int key = 0;
+        SearchResult searchResult = binarySearch.search(key, mixedElementsSequence);
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertNotEquals(-1, searchResult.getPosition());
+        Assertions.assertEquals(key, mixedElementsSequence[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void negativeKeyInMixedElementsSequence() {
+        int key = -2;
+        SearchResult searchResult = binarySearch.search(key, mixedElementsSequence);
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertNotEquals(-1, searchResult.getPosition());
+        Assertions.assertEquals(key, mixedElementsSequence[searchResult.getPosition()]);
     }
 }
