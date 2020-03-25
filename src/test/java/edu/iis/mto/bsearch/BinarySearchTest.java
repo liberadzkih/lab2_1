@@ -39,4 +39,19 @@ class BinarySearchTest {
         assertEquals(seq.length-1,sr.getPosition()); //i = getPosition()
         assertEquals(key,seq[seq.length-1]); //key=seq[i]
     }
+
+    @Test void ifIfTheMiddleElement() {
+        int seq[]={4,5,6,7,8,9};
+        SearchResult sr = BinarySearch.create().search(key,seq);
+        assertTrue(sr.isFound()); //true
+        assertEquals((seq.length-1)/2,sr.getPosition()); //i = getPosition()
+        assertEquals(key,seq[(seq.length-1)/2]); //key=seq[i]
+    }
+
+    @Test void ifIsNotInLongerSequence() {
+        int seq[]={7,8,9};
+        SearchResult sr = BinarySearch.create().search(key,seq);
+        assertFalse(sr.isFound()); //false
+        assertEquals(-1,sr.getPosition()); //i = getPosition()
+    }
 }
