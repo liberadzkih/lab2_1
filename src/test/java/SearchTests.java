@@ -3,10 +3,29 @@ import edu.iis.mto.bsearch.SearchResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+
 public class SearchTests {
     private BinarySearch binarySearch = BinarySearch.create();
     private int[] singleElementSequence = { 3 };
     private int[] multipleElementsSequence = { 1, 2, 3, 4, 5, 6, 7 };
+
+    @Test
+    public void nullSequenceTest() {
+        Exception exception = null;
+        try {
+            binarySearch.search(3, null);
+        } catch (Exception e) {
+            exception = e;
+        }
+        assertThat(exception, instanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    public void emptySequenceTest() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> binarySearch.search(3, new int[0]));
+    }
 
     @Test
     public void keyInSingleElementSequenceTest() {
