@@ -25,5 +25,18 @@ class BinarySearchTest {
         assertEquals(-1,sr.getPosition());
     }
 
-
+    @Test void ifIsTheFirstElement() { //liczac pozycje od 0
+        int seq[]={6,7,8,9,10};
+        SearchResult sr = BinarySearch.create().search(key,seq);
+        assertTrue(sr.isFound()); //true
+        assertEquals(0,sr.getPosition()); //i = getPosition()
+        assertEquals(key,seq[0]); //key=seq[i]
+    }
+    @Test void ifIsTheLastElement() { //liczac pozycje od 0
+        int seq[]={2,3,4,5,6};
+        SearchResult sr = BinarySearch.create().search(key,seq);
+        assertTrue(sr.isFound()); //true
+        assertEquals(seq.length-1,sr.getPosition()); //i = getPosition()
+        assertEquals(key,seq[seq.length-1]); //key=seq[i]
+    }
 }
