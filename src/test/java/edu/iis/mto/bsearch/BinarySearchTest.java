@@ -48,4 +48,14 @@ class BinarySearchTest {
         Assertions.assertEquals(key, multipleElementsSequence[searchResult.getPosition()]);
     }
 
+    @Test
+    public void elementIsLastInMultipleElementsSequence() {
+        int key = 5;
+        int expectedPosition = multipleElementsSequence.length-1;
+        searchResult = binarySearch.search(key, multipleElementsSequence);
+
+        Assertions.assertEquals(true, searchResult.isFound());
+        Assertions.assertEquals(expectedPosition,searchResult.getPosition());
+        Assertions.assertEquals(key, multipleElementsSequence[searchResult.getPosition()]);
+    }
 }
