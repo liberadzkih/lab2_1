@@ -36,7 +36,16 @@ class BinarySearchTest {
 
         Assertions.assertEquals(false, searchResult.isFound());
         Assertions.assertEquals(-1, searchResult.getPosition());
+    }
 
+    @Test
+    public void elementIsFirstInMultipleElementsSequence() {
+        int key = 1;
+        searchResult = binarySearch.search(key, multipleElementsSequence);
+
+        Assertions.assertEquals(true, searchResult.isFound());
+        Assertions.assertEquals(0, searchResult.getPosition());
+        Assertions.assertEquals(key, multipleElementsSequence[searchResult.getPosition()]);
     }
 
 }
