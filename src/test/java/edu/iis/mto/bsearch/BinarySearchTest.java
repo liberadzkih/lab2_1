@@ -79,4 +79,22 @@ class BinarySearchTest {
         Assertions.assertEquals(false, searchResult.isFound());
         Assertions.assertEquals(expectedPosition, searchResult.getPosition());
     }
+
+    @Test
+    public void sequenceIsNull() {
+        assertThrows(NullPointerException.class, () -> {
+            searchResult = binarySearch.search(2, null);
+        });
+    }
+
+    @Test
+    public void sequenceIsEmpty() {
+        int key = 3;
+        int expectedPosition = -1;
+        int[] emptySequence = {};
+        searchResult = binarySearch.search(key, emptySequence);
+
+        Assertions.assertEquals(false, searchResult.isFound());
+        Assertions.assertEquals(expectedPosition, searchResult.getPosition());
+    }
 }
