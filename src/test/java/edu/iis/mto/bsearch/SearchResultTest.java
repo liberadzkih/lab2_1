@@ -9,6 +9,7 @@ class SearchResultTest {
     BinarySearch binarySearch = BinarySearch.create();
     SearchResult searchResult;
     int[] sequenceWithOneElement = {1};
+    int[] sequenceWithMultipleElements = {10, 20, 30, 40, 50};
 
     @Test
     void shouldReturnTrueWhenFoundInLengthOne() {
@@ -20,9 +21,44 @@ class SearchResultTest {
     }
 
     @Test
-    void shouldReturnFalseWhenNotFoundInLengthOne() {
+    void shouldReturnFalseWhenNotFoundInLengthOneSeq() {
         int searchedElement = 2;
         searchResult = binarySearch.search(searchedElement, sequenceWithOneElement);
+        assertFalse(searchResult.isFound());
+        assertEquals(-1, searchResult.getPosition());
+    }
+
+    @Test
+    void shouldReturnFirstPositionWhenFoundInMultipleElementsSeq() {
+        int searchedElement = 10;
+        searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
+        assertTrue(searchResult.isFound());
+        assertEquals(0, searchResult.getPosition());
+        assertEquals(searchedElement, sequenceWithMultipleElements[searchResult.getPosition()]);
+    }
+
+    @Test
+    void shouldReturnLastElementWhenFoundInMultipleElementsSeq() {
+        int searchedElement = 50;
+        searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
+        assertTrue(searchResult.isFound());
+        assertEquals(4, searchResult.getPosition());
+        assertEquals(searchedElement, sequenceWithMultipleElements[searchResult.getPosition()]);
+    }
+
+    @Test
+    void shouldReturnMiddleElementWhenFoundInMultipleElementSeq() {
+        int searchedElement = 30;
+        searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
+        assertTrue(searchResult.isFound());
+        assertEquals(2, searchResult.getPosition());
+        assertEquals(searchedElement, sequenceWithMultipleElements[searchResult.getPosition()]);
+    }
+
+    @Test
+    void shouldReturnFalseWhenNotFoundInMultipleElementSeq() {
+        int searchedElement = 60;
+        searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
         assertFalse(searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
     }
