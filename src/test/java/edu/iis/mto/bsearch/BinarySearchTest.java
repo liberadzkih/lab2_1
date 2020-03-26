@@ -97,4 +97,29 @@ class BinarySearchTest {
         Assertions.assertEquals(false, searchResult.isFound());
         Assertions.assertEquals(expectedPosition, searchResult.getPosition());
     }
+
+    @Test
+    public void elementsInSequenceAreInWrongOrderNotFound() {
+        int key = 1;
+        int expectedPosition = -1;
+        int[] wrongOrderSequence = {2,5,1};
+        searchResult = binarySearch.search(key, wrongOrderSequence);
+
+        //element is in sequence but it cannot be found
+        Assertions.assertEquals(false, searchResult.isFound());
+        Assertions.assertEquals(expectedPosition, searchResult.getPosition());
+    }
+
+    @Test
+    public void elementsInSequenceAreInWrongOrderFound() {
+        int key = 1;
+        int expectedPosition = 0;
+        int[] wrongOrderSequence = {1,5,2};
+        searchResult = binarySearch.search(key, wrongOrderSequence);
+
+        //element is in unsorted sequence, but still can be found
+        Assertions.assertEquals(true, searchResult.isFound());
+        Assertions.assertEquals(expectedPosition, searchResult.getPosition());
+        Assertions.assertEquals(key,wrongOrderSequence[searchResult.getPosition()]);
+    }
 }
