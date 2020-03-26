@@ -3,6 +3,8 @@ package edu.iis.mto.bsearch;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
@@ -50,4 +52,13 @@ class BinarySearchTest {
         SearchResult result = binarySearch.search(2137,  seq);
         assertEquals(-1,  result.getPosition());
     }
+
+    @Test
+    void search_seqEmpty_IllegalArgumentException() {
+        int[] seq = {};
+        Throwable thrown = assertThrows(IllegalArgumentException.class, () -> binarySearch.search(2137, seq));
+        assertThat(thrown.getCause(), instanceOf(IllegalArgumentException.class));
+    }
+
+    
 }
