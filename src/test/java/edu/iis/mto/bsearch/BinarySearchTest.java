@@ -56,9 +56,8 @@ class BinarySearchTest {
     @Test
     void search_seqEmpty_IllegalArgumentException() {
         int[] seq = {};
-        Throwable thrown = assertThrows(IllegalArgumentException.class, () -> binarySearch.search(2137, seq));
-        assertThat(thrown.getCause(), instanceOf(IllegalArgumentException.class));
+        assertThrows(IllegalArgumentException.class, () -> binarySearch.search(2137, seq));
     }
 
-    
+
 }
