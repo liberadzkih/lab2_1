@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
 
-    @Test void testElementIsInsideSequenceLength1() {
+    @Test void checkIfElementExists_singleElementSequence() {
         int testValue = 5;
         int[] analyzedSequence = {5};
         BinarySearch seeker = new BinarySearch();
@@ -15,7 +15,7 @@ class BinarySearchTest {
         assertEquals(0, result.getPosition());
     }
 
-    @Test void testElementIsNotInsideSequenceLength1() {
+    @Test void checkIfElementDoesntExist_singleElementSequence() {
         int testValue = 5;
         int[] analyzedSequence = {7};
         BinarySearch seeker = new BinarySearch();
@@ -24,7 +24,7 @@ class BinarySearchTest {
         assertEquals(-1, result.getPosition());
     }
 
-    @Test void testElementIsAtFirstPositionSequenceLengthOver1() {
+    @Test void checkIfElementIsAtFirstPosition_multipleElementsSequence() {
         int testValue = 5;
         int[] analyzedSequence = {5, 7, 9};
         BinarySearch seeker = new BinarySearch();
@@ -33,7 +33,7 @@ class BinarySearchTest {
         assertEquals(0, result.getPosition());
     }
 
-    @Test void testElementIsAtLastPositionSequenceLengthOver1() {
+    @Test void checkIfElementIsAtLastPosition_multipleElementsSequence() {
         int testValue = 5;
         int[] analyzedSequence = {1, 2, 3, 4, 5};
         BinarySearch seeker = new BinarySearch();
@@ -42,7 +42,7 @@ class BinarySearchTest {
         assertEquals(analyzedSequence.length - 1, result.getPosition());
     }
 
-    @Test void testElementIsAtMiddlePositionSequenceLengthOver1() {
+    @Test void checkIfElementIsAtMiddlePosition_multipleElementsSequence() {
         int testValue = 3;
         int[] analyzedSequence = {1, 2, 3, 4, 5};
         BinarySearch seeker = new BinarySearch();
@@ -51,7 +51,7 @@ class BinarySearchTest {
         assertEquals(analyzedSequence.length / 2, result.getPosition());
     }
 
-    @Test void testElementIsNotInSequenceLengthOver1() {
+    @Test void checkIfElementDoesntExist_multipleElementsSequence() {
         int testValue = 10;
         int[] analyzedSequence = {1, 2, 3, 4, 5};
         BinarySearch seeker = new BinarySearch();
