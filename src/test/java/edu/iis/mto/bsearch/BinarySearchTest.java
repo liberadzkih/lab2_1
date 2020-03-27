@@ -41,4 +41,13 @@ class BinarySearchTest {
         assertTrue(result.isFound());
         assertEquals(analyzedSequence.length - 1, result.getPosition());
     }
+
+    @Test void testElementIsAtMiddlePositionSequenceLengthOver1() {
+        int testValue = 3;
+        int[] analyzedSequence = {1, 2, 3, 4, 5};
+        BinarySearch seeker = new BinarySearch();
+        SearchResult result = seeker.search(testValue, analyzedSequence);
+        assertTrue(result.isFound());
+        assertEquals(analyzedSequence.length / 2, result.getPosition());
+    }
 }
