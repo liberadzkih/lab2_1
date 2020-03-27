@@ -9,19 +9,24 @@ package edu.iis.mto.bsearch;
  */
 public class BinarySearch {
 
-    BinarySearch() {}
+    BinarySearch() {
+    }
 
     /**
      * Metoda realizujaca wyszukiwanie binarne
      *
-     * @param key
-     *            - szukany obiekt
-     * @param seq
-     *            - rosnaco uporzadkowana niepusta sekwencja
-     * @return obiekt rezultatu o polach: - found (true jezeli znaleziony) - position (jezeli znaleziony - pozycja w
-     *         sekwencji, jezeli nie znaleziony -1)
+     * @param key - szukany obiekt
+     * @param seq - rosnaco uporzadkowana niepusta sekwencja
+     * @return obiekt rezultatu o polach: - found (true jezeli znaleziony) -
+     *         position (jezeli znaleziony - pozycja w sekwencji, jezeli nie
+     *         znaleziony -1)
+     * @throws IllegalAccessException
      */
     public SearchResult search(int key, int[] seq) {
+        if (seq == null || seq.length == 0) {
+            throw new IllegalArgumentException("Empty or null sequence");
+        }
+
         int start = 0;
         int end = seq.length - 1;
         int center;

@@ -8,8 +8,9 @@ class SearchResultTest {
 
     BinarySearch binarySearch = BinarySearch.create();
     SearchResult searchResult;
-    int[] sequenceWithOneElement = {1};
-    int[] sequenceWithMultipleElements = {10, 20, 30, 40, 50};
+    int[] emptySequence = {};
+    int[] sequenceWithOneElement = { 1 };
+    int[] sequenceWithMultipleElements = { 10, 20, 30, 40, 50 };
 
     @Test
     void shouldReturnTrueWhenFoundInLengthOne() {
@@ -61,5 +62,21 @@ class SearchResultTest {
         searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
         assertFalse(searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
+    }
+
+    @Test
+    void shouldThrowIllegalArgExceptionWhenEmptySeq() {
+        int searchedElemet = 0;
+        Throwable thrown = assertThrows(IllegalArgumentException.class,
+                () -> binarySearch.search(searchedElemet, emptySequence));
+        assertEquals("Empty or null sequence", thrown.getMessage());
+    }
+
+    @Test
+    void shouldThrowIllegarArgrumenExcetpionWhenNullSeq() {
+        int searchedElemet = 0;
+        Throwable thrown = assertThrows(IllegalArgumentException.class,
+                () -> binarySearch.search(searchedElemet, null));
+        assertEquals("Empty or null sequence", thrown.getMessage());
     }
 }
