@@ -50,4 +50,13 @@ class BinarySearchTest {
         assertTrue(result.isFound());
         assertEquals(analyzedSequence.length / 2, result.getPosition());
     }
+
+    @Test void testElementIsNotInSequenceLengthOver1() {
+        int testValue = 10;
+        int[] analyzedSequence = {1, 2, 3, 4, 5};
+        BinarySearch seeker = new BinarySearch();
+        SearchResult result = seeker.search(testValue, analyzedSequence);
+        assertFalse(result.isFound());
+        assertEquals(-1, result.getPosition());
+    }
 }
