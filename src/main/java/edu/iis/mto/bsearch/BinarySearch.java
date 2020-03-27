@@ -1,6 +1,3 @@
-/**
- *
- */
 package edu.iis.mto.bsearch;
 
 /**
@@ -9,7 +6,8 @@ package edu.iis.mto.bsearch;
  */
 public class BinarySearch {
 
-    BinarySearch() {}
+    BinarySearch() {
+    }
 
     /**
      * Metoda realizujaca wyszukiwanie binarne
@@ -30,7 +28,7 @@ public class BinarySearch {
         while (start <= end) {
             center = (start + end) / 2;
             if (seq[center] == key) {
-                result.setPosition(center + 1);
+                result.setPosition(center);
                 break;
             } else {
                 if (seq[center] < key) {
