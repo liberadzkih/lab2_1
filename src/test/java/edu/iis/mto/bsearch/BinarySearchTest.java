@@ -56,4 +56,12 @@ class BinarySearchTest {
         BinarySearch seeker = new BinarySearch();
         assertThrows(IllegalArgumentException.class, () -> seeker.search(1, emptySequence));
     }
+
+    @Test void checkNegativeIntegerSequenceBehaviour() {
+        int[] negativeNumbersSequence = {-5, -4, -3, -2, -1};
+        BinarySearch seeker = new BinarySearch();
+        SearchResult result = seeker.search(-5, negativeNumbersSequence);
+        assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
+    }
 }
