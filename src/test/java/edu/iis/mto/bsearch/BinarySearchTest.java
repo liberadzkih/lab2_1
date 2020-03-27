@@ -23,4 +23,13 @@ class BinarySearchTest {
         assertFalse(result.isFound());
         assertEquals(-1, result.getPosition());
     }
+
+    @Test void testElementIsAtFirstPositionSequenceLengthOver1() {
+        int testValue = 5;
+        int[] analyzedSequence = {5, 7, 9};
+        BinarySearch seeker = new BinarySearch();
+        SearchResult result = seeker.search(testValue, analyzedSequence);
+        assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
+    }
 }
