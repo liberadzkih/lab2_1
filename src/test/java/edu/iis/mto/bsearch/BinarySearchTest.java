@@ -6,56 +6,47 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
 
+    private int[] singleElementSequence = {5};
+    private int[] multipleElementSequence = {1, 2, 3, 4, 5};
+
     @Test void checkIfElementExists_singleElementSequence() {
-        int testValue = 5;
-        int[] analyzedSequence = {5};
         BinarySearch seeker = new BinarySearch();
-        SearchResult result = seeker.search(testValue, analyzedSequence);
+        SearchResult result = seeker.search(5, singleElementSequence);
         assertTrue(result.isFound());
         assertEquals(0, result.getPosition());
     }
 
     @Test void checkIfElementDoesntExist_singleElementSequence() {
-        int testValue = 5;
-        int[] analyzedSequence = {7};
         BinarySearch seeker = new BinarySearch();
-        SearchResult result = seeker.search(testValue, analyzedSequence);
+        SearchResult result = seeker.search(1, singleElementSequence);
         assertFalse(result.isFound());
         assertEquals(-1, result.getPosition());
     }
 
     @Test void checkIfElementIsAtFirstPosition_multipleElementsSequence() {
-        int testValue = 5;
-        int[] analyzedSequence = {5, 7, 9};
         BinarySearch seeker = new BinarySearch();
-        SearchResult result = seeker.search(testValue, analyzedSequence);
+        SearchResult result = seeker.search(1, multipleElementSequence);
         assertTrue(result.isFound());
         assertEquals(0, result.getPosition());
     }
 
     @Test void checkIfElementIsAtLastPosition_multipleElementsSequence() {
-        int testValue = 5;
-        int[] analyzedSequence = {1, 2, 3, 4, 5};
         BinarySearch seeker = new BinarySearch();
-        SearchResult result = seeker.search(testValue, analyzedSequence);
+        SearchResult result = seeker.search(5, multipleElementSequence);
         assertTrue(result.isFound());
-        assertEquals(analyzedSequence.length - 1, result.getPosition());
+        assertEquals(multipleElementSequence.length - 1, result.getPosition());
     }
 
     @Test void checkIfElementIsAtMiddlePosition_multipleElementsSequence() {
-        int testValue = 3;
-        int[] analyzedSequence = {1, 2, 3, 4, 5};
         BinarySearch seeker = new BinarySearch();
-        SearchResult result = seeker.search(testValue, analyzedSequence);
+        SearchResult result = seeker.search(3, multipleElementSequence);
         assertTrue(result.isFound());
-        assertEquals(analyzedSequence.length / 2, result.getPosition());
+        assertEquals(multipleElementSequence.length / 2, result.getPosition());
     }
 
     @Test void checkIfElementDoesntExist_multipleElementsSequence() {
-        int testValue = 10;
-        int[] analyzedSequence = {1, 2, 3, 4, 5};
         BinarySearch seeker = new BinarySearch();
-        SearchResult result = seeker.search(testValue, analyzedSequence);
+        SearchResult result = seeker.search(10, multipleElementSequence);
         assertFalse(result.isFound());
         assertEquals(-1, result.getPosition());
     }
