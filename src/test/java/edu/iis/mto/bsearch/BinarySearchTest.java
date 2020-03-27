@@ -4,11 +4,30 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
 
 class BinarySearchTest {
     private BinarySearch binarySearch = BinarySearch.create();
     private int[] oneElementSequence = { 1 };
     private int[] fewElementsSequence = { 1, 2, 3, 4, 5 };
+
+    @Test
+    void nullSequenceTest() {
+        Throwable exception = null;
+        try {
+            binarySearch.search(3, null);
+        } catch (Throwable except) {
+            exception = except;
+        }
+        assertTrue(exception instanceof IllegalArgumentException);
+    }
+
+    @Test
+    public void emptySequenceTest() {
+        int[] emptySequence = {};
+        Assertions.assertThrows(IllegalArgumentException.class, () -> binarySearch.search(3, emptySequence));
+    }
 
     @Test
     public void foundInOneElementSequenceTest() {
