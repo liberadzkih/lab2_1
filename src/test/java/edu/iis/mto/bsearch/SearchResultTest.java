@@ -1,6 +1,8 @@
 package edu.iis.mto.bsearch;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,57 +13,58 @@ class SearchResultTest {
     int[] emptySequence = {};
     int[] sequenceWithOneElement = { 1 };
     int[] sequenceWithMultipleElements = { 10, 20, 30, 40, 50 };
+    String expectedEmptyOrNullSeqException = "Empty or null sequence";
 
     @Test
     void shouldReturnTrueWhenFoundInLengthOne() {
         int searchedElement = 1;
         searchResult = binarySearch.search(searchedElement, sequenceWithOneElement);
-        assertTrue(searchResult.isFound());
-        assertEquals(0, searchResult.getPosition());
-        assertEquals(searchedElement, sequenceWithOneElement[searchResult.getPosition()]);
+        assertThat(true, is(searchResult.isFound()));
+        assertThat(0, equalTo(searchResult.getPosition()));
+        assertThat(searchedElement, equalTo(sequenceWithOneElement[searchResult.getPosition()]));
     }
 
     @Test
     void shouldReturnFalseWhenNotFoundInLengthOneSeq() {
         int searchedElement = 2;
         searchResult = binarySearch.search(searchedElement, sequenceWithOneElement);
-        assertFalse(searchResult.isFound());
-        assertEquals(-1, searchResult.getPosition());
+        assertThat(false, is(searchResult.isFound()));
+        assertThat(-1, equalTo(searchResult.getPosition()));
     }
 
     @Test
     void shouldReturnFirstPositionWhenFoundInMultipleElementsSeq() {
         int searchedElement = 10;
         searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
-        assertTrue(searchResult.isFound());
-        assertEquals(0, searchResult.getPosition());
-        assertEquals(searchedElement, sequenceWithMultipleElements[searchResult.getPosition()]);
+        assertThat(true, is(searchResult.isFound()));
+        assertThat(0, equalTo(searchResult.getPosition()));
+        assertThat(searchedElement, equalTo(sequenceWithMultipleElements[searchResult.getPosition()]));
     }
 
     @Test
     void shouldReturnLastElementWhenFoundInMultipleElementsSeq() {
         int searchedElement = 50;
         searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
-        assertTrue(searchResult.isFound());
-        assertEquals(4, searchResult.getPosition());
-        assertEquals(searchedElement, sequenceWithMultipleElements[searchResult.getPosition()]);
+        assertThat(true, is(searchResult.isFound()));
+        assertThat(4, equalTo(searchResult.getPosition()));
+        assertThat(searchedElement, equalTo(sequenceWithMultipleElements[searchResult.getPosition()]));
     }
 
     @Test
     void shouldReturnMiddleElementWhenFoundInMultipleElementSeq() {
         int searchedElement = 30;
         searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
-        assertTrue(searchResult.isFound());
-        assertEquals(2, searchResult.getPosition());
-        assertEquals(searchedElement, sequenceWithMultipleElements[searchResult.getPosition()]);
+        assertThat(true, is(searchResult.isFound()));
+        assertThat(2, equalTo(searchResult.getPosition()));
+        assertThat(searchedElement, equalTo(sequenceWithMultipleElements[searchResult.getPosition()]));
     }
 
     @Test
     void shouldReturnFalseWhenNotFoundInMultipleElementSeq() {
         int searchedElement = 60;
         searchResult = binarySearch.search(searchedElement, sequenceWithMultipleElements);
-        assertFalse(searchResult.isFound());
-        assertEquals(-1, searchResult.getPosition());
+        assertThat(false, is(searchResult.isFound()));
+        assertThat(-1, equalTo(searchResult.getPosition()));
     }
 
     @Test
@@ -69,7 +72,7 @@ class SearchResultTest {
         int searchedElemet = 0;
         Throwable thrown = assertThrows(IllegalArgumentException.class,
                 () -> binarySearch.search(searchedElemet, emptySequence));
-        assertEquals("Empty or null sequence", thrown.getMessage());
+        assertThat(expectedEmptyOrNullSeqException, equalTo(thrown.getMessage()));
     }
 
     @Test
@@ -77,6 +80,6 @@ class SearchResultTest {
         int searchedElemet = 0;
         Throwable thrown = assertThrows(IllegalArgumentException.class,
                 () -> binarySearch.search(searchedElemet, null));
-        assertEquals("Empty or null sequence", thrown.getMessage());
+        assertThat(expectedEmptyOrNullSeqException, equalTo(thrown.getMessage()));
     }
 }
