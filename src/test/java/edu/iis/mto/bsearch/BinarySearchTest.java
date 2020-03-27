@@ -50,4 +50,10 @@ class BinarySearchTest {
         assertFalse(result.isFound());
         assertEquals(-1, result.getPosition());
     }
+
+    @Test void checkWhenSequenceIsEmpty() {
+        int[] emptySequence = {};
+        BinarySearch seeker = new BinarySearch();
+        assertThrows(IllegalArgumentException.class, () -> seeker.search(1, emptySequence));
+    }
 }
