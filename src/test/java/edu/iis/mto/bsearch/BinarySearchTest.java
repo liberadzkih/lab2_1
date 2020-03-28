@@ -64,4 +64,12 @@ class BinarySearchTest {
         assertTrue(result.isFound());
         assertEquals(0, result.getPosition());
     }
+
+    @Test void checkBehaviourWhenSequenceNotSorted() {
+        int[] unsortedSequence = {6, 1, 8, 2, 9};
+        BinarySearch seeker = new BinarySearch();
+        SearchResult result = seeker.search(2, unsortedSequence);
+        assertFalse(result.isFound());  //algorithm assumes ascending order so it looks for 2 in the lower half of the sequence
+        assertEquals(-1, result.getPosition());
+    }
 }
