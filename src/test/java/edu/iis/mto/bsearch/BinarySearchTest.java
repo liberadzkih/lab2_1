@@ -48,6 +48,15 @@ class BinarySearchTest {
     @Test
     public void elementIsLastElementofSeq() {
 
+        int[] seq = {1, 2, 3, 4};
+        final int KEY = 4;
+        final int EXPECTED_VALUE = seq.length - 1;
+
+        SearchResult result = BinarySearch.create().search(KEY, seq);
+
+        Assertions.assertEquals(true, result.isFound());
+        Assertions.assertEquals(EXPECTED_VALUE, result.getPosition());
+
     }
 
     @Test
