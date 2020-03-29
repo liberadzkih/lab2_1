@@ -23,7 +23,7 @@ public class BinarySearch {
      */
     public SearchResult search(int key, int[] seq) {
         if(seq == null) throw new NullPointerException();
-        if(seq.length == 0) throw new IllegalArgumentException();
+        if(seq.length == 0 || !isSorted(seq)) throw new IllegalArgumentException();
 
         int start = 0;
         int end = seq.length - 1;
@@ -49,5 +49,13 @@ public class BinarySearch {
 
     public static BinarySearch create() {
         return new BinarySearch();
+    }
+
+    private boolean isSorted(int[] seq) {
+        for (int i = 0; i < seq.length - 1; i++) {
+            if (seq[i + 1] < seq[i])
+                return false;
+        }
+        return true;
     }
 }

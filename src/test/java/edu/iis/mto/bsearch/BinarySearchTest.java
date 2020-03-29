@@ -12,6 +12,7 @@ public class BinarySearchTest {
     private int[] oneElementSeq = new int[]{1};
     private int[] multiElementSeq = new int[]{1, 2, 3};
     private int[] emptySeq = new int[]{};
+    private int[] notSortedSeq = new int[]{2, 1, 3};
 
     @Test
     public void should_FindElement_When_ElementIsInOneElemSequence() {
@@ -63,5 +64,10 @@ public class BinarySearchTest {
     @Test (expected = IllegalArgumentException.class)
     public void should_ThrowIllegalArgumentException_When_SequenceIsNull () {
         BinarySearch.create().search(1, emptySeq);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void should_ThrowIllegalArgumentException_When_SequenceIsNotSorted () {
+        BinarySearch.create().search(1, notSortedSeq);
     }
 }
