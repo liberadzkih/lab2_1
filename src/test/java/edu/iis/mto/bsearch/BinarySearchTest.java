@@ -1,7 +1,7 @@
 package edu.iis.mto.bsearch;
 
-import org.junit.Before;
-import org.junit.Test;
+//import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -56,18 +56,18 @@ public class BinarySearchTest {
         assertThat(result.getPosition(), equalTo(-1));
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test //(expected = NullPointerException.class)
     public void should_ThrowNullPointerException_When_SequenceLenIsZero () {
-        BinarySearch.create().search(1, null);
+        assertThrows(NullPointerException.class, () -> BinarySearch.create().search(1, null));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test //(expected = IllegalArgumentException.class)
     public void should_ThrowIllegalArgumentException_When_SequenceIsNull () {
-        BinarySearch.create().search(1, emptySeq);
+        assertThrows(IllegalArgumentException.class, () -> BinarySearch.create().search(1, emptySeq));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test //(expected = IllegalArgumentException.class)
     public void should_ThrowIllegalArgumentException_When_SequenceIsNotSorted () {
-        BinarySearch.create().search(1, notSortedSeq);
+            assertThrows(IllegalArgumentException.class, () -> BinarySearch.create().search(1, notSortedSeq));
     }
 }
