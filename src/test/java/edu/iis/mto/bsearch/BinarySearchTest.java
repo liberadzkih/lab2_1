@@ -9,6 +9,7 @@ public class BinarySearchTest {
 
     private int[] oneElementSeq = new int[]{1};
     private int[] multiElementSeq = new int[]{1, 2, 3};
+    private int[] emptySeq = new int[]{};
 
     @Test
     public void should_FindElement_When_ElementIsInOneElemSequence() {
@@ -52,4 +53,13 @@ public class BinarySearchTest {
         assertEquals(-1, result.getPosition());
     }
 
+    @Test (expected = NullPointerException.class)
+    public void should_ThrowNullPointerException_When_SequenceLenIsZero () {
+        SearchResult result = BinarySearch.create().search(1, null);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void should_ThrowIllegalArgumentException_When_SequenceIsNull () {
+        SearchResult result = BinarySearch.create().search(1, emptySeq);
+    }
 }
