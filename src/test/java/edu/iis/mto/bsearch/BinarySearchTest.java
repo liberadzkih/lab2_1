@@ -20,20 +20,29 @@ class BinarySearchTest {
 
     @Test
     public void elementIsNotInSequenceLengthEqualsOne() {
+
         int[] seq = {3};
         final int KEY = 4;
         final int EXPECTED_VALUE = -1;
 
-        SearchResult result = BinarySearch.create().search(KEY,seq);
+        SearchResult result = BinarySearch.create().search(KEY, seq);
 
-        Assertions.assertEquals(false,result.isFound());
-        Assertions.assertEquals(EXPECTED_VALUE,result.getPosition());
+        Assertions.assertEquals(false, result.isFound());
+        Assertions.assertEquals(EXPECTED_VALUE, result.getPosition());
 
     }
 
     @Test
     public void elementIsFirstElementOfSeq() {
 
+        int[] seq = {1, 2, 3, 4};
+        final int KEY = 1;
+        final int EXPECTED_VALUE = 0;
+
+        SearchResult result = BinarySearch.create().search(KEY, seq);
+
+        Assertions.assertEquals(true, result.isFound());
+        Assertions.assertEquals(EXPECTED_VALUE, result.getPosition());
     }
 
     @Test
