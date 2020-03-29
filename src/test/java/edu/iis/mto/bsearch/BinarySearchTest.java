@@ -76,10 +76,10 @@ class BinarySearchTest {
     @Test
     public void elementIsNotInSequenceLengthEqualsMoreThanOne() {
 
-        int[] seq = {1,2,3,4};
+        int[] seq = {1, 2, 3, 4};
         final int KEY = 5;
 
-        SearchResult result = BinarySearch.create().search(KEY,seq);
+        SearchResult result = BinarySearch.create().search(KEY, seq);
 
         Assertions.assertFalse(result.isFound());
 
