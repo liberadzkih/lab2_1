@@ -85,4 +85,29 @@ class BinarySearchTest {
 
     }
 
+    @Test
+    public void searchForElementWhenTheyAreTwoTheSameElementsInSequence() {
+
+        int[] seq = {-3, -1, 0, 1, 4, 4, 7};
+        final int KEY = 4;
+
+        SearchResult result = BinarySearch.create().search(KEY, seq);
+
+        Assertions.assertTrue(result.isFound());
+
+    }
+
+    @Test
+    public void searchForElementInTheMiddleWhenThereAreManyOfThemInSequence() {
+
+        int[] seq = {-1, 3, 3, 3, 3, 3, 9};
+        final int KEY = 3;
+        final int EXPECTED_VALUE = (seq.length - 1) / 2;
+
+        SearchResult result = BinarySearch.create().search(KEY, seq);
+
+        Assertions.assertEquals(EXPECTED_VALUE, result.getPosition());
+
+    }
+
 }
