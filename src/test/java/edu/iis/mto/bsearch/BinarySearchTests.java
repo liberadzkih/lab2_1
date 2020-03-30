@@ -46,4 +46,14 @@ public class BinarySearchTests {
         Assertions.assertEquals(multipleSeq.length-1, searchResult.getPosition());
         Assertions.assertEquals(elementToBeFound, multipleSeq[searchResult.getPosition()]);
     }
+
+    @Test
+    public void elementIsInTheMiddleInMultipleElementSequence() {
+        int elementToBeFound = 16;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, multipleSeq);
+
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertEquals(4, searchResult.getPosition());
+        Assertions.assertEquals(elementToBeFound, multipleSeq[searchResult.getPosition()]);
+    }
 }
