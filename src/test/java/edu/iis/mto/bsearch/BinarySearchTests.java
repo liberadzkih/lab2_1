@@ -8,6 +8,7 @@ public class BinarySearchTests {
     private int[] multipleSeq = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
     private int[] duplicateContainingSeq = {2, 2, 3, 4, 5};
     private int[] duplicateOnlySeq = {5, 5, 5, 5, 5, 5};
+    private int[] unsortedSeq = {123, 11, 2, 3, 4, 5};
     private BinarySearch binarySearch = new BinarySearch();
 
     @Test
@@ -102,5 +103,24 @@ public class BinarySearchTests {
         SearchResult searchResult = binarySearch.search(elementToBeFound, duplicateOnlySeq);
 
         Assertions.assertTrue(searchResult.isFound());
+    }
+
+    @Test
+    public void elementInUnsortedSequence() {
+        int elementToBeFound = 5;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, unsortedSeq);
+
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertNotEquals(-1, searchResult.getPosition());
+        Assertions.assertEquals(elementToBeFound, unsortedSeq[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void elementNotInUnsortedSequence() {
+        int elementToBeFound = 18;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, unsortedSeq);
+
+        Assertions.assertFalse(searchResult.isFound());
+        Assertions.assertEquals(-1, searchResult.getPosition());
     }
 }
