@@ -11,6 +11,7 @@ class BinarySearchTest {
 
     private int[] sampleSingleArray ={1};
     private int[] sampleMultiArray ={1,2,3};
+    private int[] contain0Array ={-1,0,1,2,3};
     private BinarySearch binarySearch = new BinarySearch();
 
     @Test
@@ -52,6 +53,14 @@ class BinarySearchTest {
 
         assertTrue(searchResult.isFound());
         assertThat(searchResult.getPosition(),is(equalTo(-1)));
+    }
+    @Test
+
+    void search_for_many_elements_with_zero_has_it_should_found_it(){
+        SearchResult searchResult=binarySearch.search(0, contain0Array);
+
+        assertTrue(searchResult.isFound());
+        assertEquals(1,searchResult.getPosition());
     }
 
 }
