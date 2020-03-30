@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 public class BinarySearchTests {
     private int[] singleSeq = {5};
     private int[] multipleSeq = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
+    private int[] duplicateContainingSeq = {2, 2, 3, 4, 5};
+    private int[] duplicateOnlySeq = {5, 5, 5, 5, 5, 5};
     private BinarySearch binarySearch = new BinarySearch();
 
     @Test
@@ -43,7 +45,7 @@ public class BinarySearchTests {
         SearchResult searchResult = binarySearch.search(elementToBeFound, multipleSeq);
 
         Assertions.assertTrue(searchResult.isFound());
-        Assertions.assertEquals(multipleSeq.length-1, searchResult.getPosition());
+        Assertions.assertEquals(multipleSeq.length - 1, searchResult.getPosition());
         Assertions.assertEquals(elementToBeFound, multipleSeq[searchResult.getPosition()]);
     }
 
@@ -64,5 +66,41 @@ public class BinarySearchTests {
 
         Assertions.assertFalse(searchResult.isFound());
         Assertions.assertEquals(-1, searchResult.getPosition());
+    }
+
+    @Test
+    public void sequenceIsNull() {
+        int elementToBeFound = 91;
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            SearchResult searchResult = binarySearch.search(elementToBeFound, null);
+        });
+    }
+
+    @Test
+    public void elementIsFirstInSequenceContainingDuplicates() {
+        int elementToBeFound = 2;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, duplicateContainingSeq);
+
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertEquals(0, searchResult.getPosition());
+        Assertions.assertEquals(elementToBeFound, duplicateContainingSeq[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void elementIsLastInSequenceContainingDuplicates() {
+        int elementToBeFound = 5;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, duplicateContainingSeq);
+
+        Assertions.assertTrue(searchResult.isFound());
+        Assertions.assertEquals(duplicateContainingSeq.length - 1, searchResult.getPosition());
+        Assertions.assertEquals(elementToBeFound, duplicateContainingSeq[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void elementIsSequenceContainingOnlyDuplicates() {
+        int elementToBeFound = 5;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, duplicateOnlySeq);
+
+        Assertions.assertTrue(searchResult.isFound());
     }
 }
