@@ -56,4 +56,13 @@ public class BinarySearchTests {
         Assertions.assertEquals(4, searchResult.getPosition());
         Assertions.assertEquals(elementToBeFound, multipleSeq[searchResult.getPosition()]);
     }
+
+    @Test
+    public void elementIsNotInMultipleElementSequence() {
+        int elementToBeFound = 123;
+        SearchResult searchResult = binarySearch.search(elementToBeFound, multipleSeq);
+
+        Assertions.assertFalse(searchResult.isFound());
+        Assertions.assertEquals(-1, searchResult.getPosition());
+    }
 }
