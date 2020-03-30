@@ -51,7 +51,7 @@ class BinarySearchTest {
     void search_for_many_elements_when_has_not_it_should_return_negative_value(){
         SearchResult searchResult=binarySearch.search(4, sampleMultiArray);
 
-        assertTrue(searchResult.isFound());
+        assertFalse(searchResult.isFound());
         assertThat(searchResult.getPosition(),is(equalTo(-1)));
     }
     @Test
