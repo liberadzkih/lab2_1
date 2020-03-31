@@ -22,6 +22,10 @@ public class BinarySearch {
      *         sekwencji, jezeli nie znaleziony -1)
      */
     public SearchResult search(int key, int[] seq) {
+    	if (seq.length == 0) {
+    		throw new IllegalArgumentException();
+    	}
+    	
         int start = 0;
         int end = seq.length - 1;
         int center;
@@ -30,7 +34,7 @@ public class BinarySearch {
         while (start <= end) {
             center = (start + end) / 2;
             if (seq[center] == key) {
-                result.setPosition(center + 1);
+                result.setPosition(center);
                 break;
             } else {
                 if (seq[center] < key) {
