@@ -13,7 +13,7 @@ class BinarySearchTest {
         int elementToBeFound = seqshort[1];
         int i = 0;
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqshort);
-        assertEquals(true, searchResult.isFound());
+        assertTrue(searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
         assertEquals(elementToBeFound, seqshort[i]);
     }
@@ -22,7 +22,7 @@ class BinarySearchTest {
         int elementToBeFound = 4;
         int i = 0;
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqshort);
-        assertEquals(false, searchResult.isFound());
+        assertFalse(searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
     }
     @Test
@@ -31,7 +31,7 @@ class BinarySearchTest {
         int i = 0;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
-        assertEquals(true, searchResult.isFound());
+        assertTrue(searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
         assertEquals(elementToBeFound, seqlong[i]);
     }
@@ -41,7 +41,7 @@ class BinarySearchTest {
         int i = 4;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
-        assertEquals(true, searchResult.isFound());
+        assertTrue(searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
         assertEquals(elementToBeFound, seqlong[i]);
     }
@@ -51,7 +51,7 @@ class BinarySearchTest {
         int elementToBeFound = 3;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
-        assertEquals(true, searchResult.isFound());
+        assertTrue(searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
         assertEquals(elementToBeFound, seqlong[i]);
     }
@@ -60,7 +60,7 @@ class BinarySearchTest {
         int elementToBeFound = 6;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
-        assertEquals(false, searchResult.isFound());
+        assertFalse(searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
     }
 }
