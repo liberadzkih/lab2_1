@@ -9,7 +9,8 @@ package edu.iis.mto.bsearch;
  */
 public class BinarySearch {
 
-    BinarySearch() {}
+    BinarySearch() {
+    }
 
     /**
      * Metoda realizujaca wyszukiwanie binarne
@@ -22,6 +23,11 @@ public class BinarySearch {
      *         sekwencji, jezeli nie znaleziony -1)
      */
     public SearchResult search(int key, int[] seq) {
+        if (seq == null) {
+            throw new NullPointerException("seq can't be null ");
+        } else if (seq.length == 0) {
+            throw new IllegalArgumentException("seq can't be empty");
+        }
         int start = 0;
         int end = seq.length - 1;
         int center;

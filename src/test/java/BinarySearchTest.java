@@ -21,10 +21,17 @@ public class BinarySearchTest {
     @Nested
     @DisplayName("Tests for single sequence")
     class SingleSequenceTest {
+
+        int[] sequence;
+
+        @BeforeEach
+        void initializeSingleSequence(){
+            sequence = new int[]{1};
+        }
+
         @Test
         void shouldReturnPositiveResultForKeyInSequence() {
-            int key = 1;
-            int[] sequence = new int[]{key};
+            int key = sequence[0];
             SearchResult searchResult = binarySearch.search(key, sequence);
 
             assertAll(
@@ -35,8 +42,7 @@ public class BinarySearchTest {
 
         @Test
         void shouldReturnNegativeResultForKeyNotInSingleSequence() {
-            int key = 1;
-            int[] sequence = new int[]{0};
+            int key =  -1;
             SearchResult searchResult = binarySearch.search(key, sequence);
 
             assertAll(
@@ -100,6 +106,28 @@ public class BinarySearchTest {
             assertAll(
                     () -> assertFalse(searchResult.isFound()),
                     () -> assertEquals(-1, searchResult.getPosition())
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests for incorrect arguments")
+    class IncorrectArgumentsTest {
+
+        @Test
+        void shouldThrowIllegalNullPointerExceptionIfSequenceIsNull(){
+            assertThrows(
+                    NullPointerException.class,
+                    () -> binarySearch.search(2, null)
+            );
+        }
+
+        @Test
+        void shouldThrowIllegalArgumentExceptionIfSequenceIsEmpty(){
+            int[] emptySeq = new int[]{};
+            assertThrows(
+                    IllegalArgumentException.class,
+                    () -> binarySearch.search(2, emptySeq)
             );
         }
 
