@@ -28,4 +28,21 @@ class BinarySearchTest {
         assertEquals(false, searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
     }
+    @Test
+    void searchforelement_seqlenlongerthen1_elementisfirst() {
+        int elementToBeFound = 4;
+        int i = 0;
+        int[] seq = new int[5];
+        seq[0] = elementToBeFound;
+        seq[1] = 1;
+        seq[2] = 2;
+        seq[3] = 3;
+        seq[4] = 4;
+
+
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        assertEquals(true, searchResult.isFound());
+        assertEquals(i, searchResult.getPosition());
+        assertEquals(elementToBeFound, seq[i]);
+    }
 }
