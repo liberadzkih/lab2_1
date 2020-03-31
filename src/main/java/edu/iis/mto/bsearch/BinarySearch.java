@@ -3,6 +3,8 @@
  */
 package edu.iis.mto.bsearch;
 
+import java.util.Arrays;
+
 /**
  * Klasa dla wyszukiwania binarnego
  *
@@ -27,6 +29,8 @@ public class BinarySearch {
             throw new NullPointerException("seq can't be null ");
         } else if (seq.length == 0) {
             throw new IllegalArgumentException("seq can't be empty");
+        } else if (!isSeqSorted(seq)) {
+            throw new IllegalArgumentException("seq have to be sorted");
         }
         int start = 0;
         int end = seq.length - 1;
@@ -48,6 +52,16 @@ public class BinarySearch {
 
         }
         return result;
+    }
+
+    private boolean isSeqSorted(int[] seq) {
+        if (seq.length < 1)
+            return true;
+        for (int i = 1; i < seq.length; i++) {
+            if (seq[i - 1] > seq[i])
+                return false;
+        }
+        return true;
     }
 
     public static BinarySearch create() {
