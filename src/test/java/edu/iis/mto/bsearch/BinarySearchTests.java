@@ -4,66 +4,60 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class BinarySearchTests {
+	private static final int[] EMPTY_SEQUENCE = { };
+	private static final int[] ONE_ELEMENT_SEQUENCE = { 10 };
+	private static final int[] MULTIPLE_ELEMENT_SEQUENCE = { 10, 20, 30, 40, 50 };
+	private static final int ELEMENT_NOT_FOUD_POSITION = -1;
+	
 	@Test
 	public void keyIsInSequence() {
-		int key = 1;
-		int[] sequence = { 1 };
-		int expected = 0;
+		int key = 10;
 		
-		SearchResult result = BinarySearch.create().search(key, sequence);
+		SearchResult result = BinarySearch.create().search(key, ONE_ELEMENT_SEQUENCE);
 		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(expected, result.getPosition());
+		Assert.assertEquals(key, ONE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test
 	public void keyIsNotInSequence() {
 		int key = 0;
-		int[] sequence = { 1 };
-		int expected = -1;
 		
-		SearchResult result = BinarySearch.create().search(key, sequence);
+		SearchResult result = BinarySearch.create().search(key, ONE_ELEMENT_SEQUENCE);
 		Assert.assertFalse(result.isFound());
-		Assert.assertEquals(expected, result.getPosition());
+		Assert.assertEquals(ELEMENT_NOT_FOUD_POSITION, result.getPosition());
 	}
 	
 	@Test
 	public void keyIsFirstInSequence() {
-		int key = 1;
-		int[] sequence = { 1, 2, 3, 4, 5 };
-		int expected = 0;
+		int key = 10;
 		
-		SearchResult result = BinarySearch.create().search(key, sequence);
+		SearchResult result = BinarySearch.create().search(key, MULTIPLE_ELEMENT_SEQUENCE);
 		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(expected, result.getPosition());
+		Assert.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test
 	public void keyIsLastInSequence() {
-		int key = 5;
-		int[] sequence = { 1, 2, 3, 4, 5 };
-		int expected = 4;
+		int key = 50;
 		
-		SearchResult result = BinarySearch.create().search(key, sequence);
+		SearchResult result = BinarySearch.create().search(key, MULTIPLE_ELEMENT_SEQUENCE);
 		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(expected, result.getPosition());
+		Assert.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test
 	public void keyIsMiddleInSequence() {
-		int key = 3;
-		int[] sequence = { 1, 2, 3, 4, 5 };
-		int expected = 2;
+		int key = 30;
 		
-		SearchResult result = BinarySearch.create().search(key, sequence);
+		SearchResult result = BinarySearch.create().search(key, MULTIPLE_ELEMENT_SEQUENCE);
 		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(expected, result.getPosition());
+		Assert.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void keyInEmptySequence() {
 		int key = 0;
-		int[] sequence = { };
 
-		BinarySearch.create().search(key, sequence);
+		BinarySearch.create().search(key, EMPTY_SEQUENCE);
 	}
 }
