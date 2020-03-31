@@ -5,26 +5,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
+    private int[] seqshort = {1};
+    private int[] seqlong = {1,2,3,4,5};
 
     @Test
     void searchforelement_seqlen1_elementisinseq() {
-        int elementToBeFound = 4;
+        int elementToBeFound = seqshort[1];
         int i = 0;
-        int[] seq = new int[1];
-        seq[i] = elementToBeFound;
-        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqshort);
         assertEquals(true, searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
-        assertEquals(elementToBeFound, seq[i]);
-
+        assertEquals(elementToBeFound, seqshort[i]);
     }
     @Test
     void searchforelement_seqlen1_elementisNOTotinseq() {
         int elementToBeFound = 4;
         int i = 0;
-        int[] seq = new int[1];
-        seq[i] = 3;
-        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqshort);
         assertEquals(false, searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
     }
@@ -32,65 +29,37 @@ class BinarySearchTest {
     void searchforelement_seqlenlongerthen1_elementisfirst() {
         int elementToBeFound = 4;
         int i = 0;
-        int[] seq = new int[5];
-        seq[0] = elementToBeFound;
-        seq[1] = 1;
-        seq[2] = 2;
-        seq[3] = 3;
-        seq[4] = 4;
 
-
-        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
         assertEquals(true, searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
-        assertEquals(elementToBeFound, seq[i]);
+        assertEquals(elementToBeFound, seqlong[i]);
     }
     @Test
     void searchforelement_seqlenlongerthen1_elementislast() {
         int elementToBeFound = 5;
         int i = 4;
-        int[] seq = new int[5];
-        seq[0] = 1;
-        seq[1] = 2;
-        seq[2] = 3;
-        seq[3] = 4;
-        seq[4] = elementToBeFound;
 
-
-        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
         assertEquals(true, searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
-        assertEquals(elementToBeFound, seq[i]);
+        assertEquals(elementToBeFound, seqlong[i]);
     }
     @Test
     void searchforelement_seqlenlongerthen1_elementiscenter() {
-        int elementToBeFound = 6;
         int i = 2;
-        int[] seq = new int[5];
-        seq[0] = 1;
-        seq[1] = 2;
-        seq[2] = elementToBeFound;
-        seq[3] = 4;
-        seq[4] = 5;
+        int elementToBeFound = 3;
 
-
-        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
         assertEquals(true, searchResult.isFound());
         assertEquals(i, searchResult.getPosition());
-        assertEquals(elementToBeFound, seq[i]);
+        assertEquals(elementToBeFound, seqlong[i]);
     }
     @Test
     void searchforelement_seqlenlongerthen1_elementisNOTinsequence() {
         int elementToBeFound = 6;
-        int[] seq = new int[5];
-        seq[0] = 1;
-        seq[1] = 2;
-        seq[2] = 3;
-        seq[3] = 4;
-        seq[4] = 5;
 
-
-        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
         assertEquals(false, searchResult.isFound());
         assertEquals(-1, searchResult.getPosition());
     }
