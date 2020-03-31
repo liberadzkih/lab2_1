@@ -79,4 +79,19 @@ class BinarySearchTest {
         assertEquals(i, searchResult.getPosition());
         assertEquals(elementToBeFound, seq[i]);
     }
+    @Test
+    void searchforelement_seqlenlongerthen1_elementisNOTinsequence() {
+        int elementToBeFound = 6;
+        int[] seq = new int[5];
+        seq[0] = 1;
+        seq[1] = 2;
+        seq[2] = 3;
+        seq[3] = 4;
+        seq[4] = 5;
+
+
+        SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seq);
+        assertEquals(false, searchResult.isFound());
+        assertEquals(-1, searchResult.getPosition());
+    }
 }
