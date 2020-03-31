@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BinarySearchTest {
@@ -36,7 +38,7 @@ public class BinarySearchTest {
 
             assertAll(
                     () -> assertTrue(searchResult.isFound()),
-                    () -> assertEquals(0, searchResult.getPosition())
+                    () -> assertThat(searchResult.getPosition(), equalTo(0))
             );
         }
 
@@ -47,7 +49,7 @@ public class BinarySearchTest {
 
             assertAll(
                     () -> assertFalse(searchResult.isFound()),
-                    () -> assertEquals(-1, searchResult.getPosition())
+                    () -> assertThat(searchResult.getPosition(), equalTo(-1))
             );
         }
     }
@@ -69,7 +71,7 @@ public class BinarySearchTest {
 
             assertAll(
                     () -> assertTrue(searchResult.isFound()),
-                    () -> assertEquals(0, searchResult.getPosition())
+                    () -> assertThat(searchResult.getPosition(), equalTo(0))
             );
         }
 
@@ -81,7 +83,7 @@ public class BinarySearchTest {
 
             assertAll(
                     () -> assertTrue(searchResult.isFound()),
-                    () -> assertEquals(lastIndex, searchResult.getPosition())
+                    () -> assertThat(searchResult.getPosition(), equalTo(lastIndex))
             );
         }
 
@@ -93,7 +95,7 @@ public class BinarySearchTest {
 
             assertAll(
                     () -> assertTrue(searchResult.isFound()),
-                    () -> assertEquals(middleIndex, searchResult.getPosition())
+                    () -> assertThat(searchResult.getPosition(), equalTo(middleIndex))
             );
 
         }
@@ -105,7 +107,7 @@ public class BinarySearchTest {
 
             assertAll(
                     () -> assertFalse(searchResult.isFound()),
-                    () -> assertEquals(-1, searchResult.getPosition())
+                    () -> assertThat(searchResult.getPosition(), equalTo(-1))
             );
         }
     }
