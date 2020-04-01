@@ -1,7 +1,7 @@
 package edu.iis.mto.bsearch;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BinarySearchTests {
 	private static final int[] EMPTY_SEQUENCE = { };
@@ -16,8 +16,8 @@ public class BinarySearchTests {
 		int key = 10;
 		
 		SearchResult result = BinarySearch.create().search(key, ONE_ELEMENT_SEQUENCE);
-		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(key, ONE_ELEMENT_SEQUENCE[result.getPosition()]);
+		Assertions.assertTrue(result.isFound());
+		Assertions.assertEquals(key, ONE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test
@@ -25,8 +25,8 @@ public class BinarySearchTests {
 		int key = 0;
 		
 		SearchResult result = BinarySearch.create().search(key, ONE_ELEMENT_SEQUENCE);
-		Assert.assertFalse(result.isFound());
-		Assert.assertEquals(ELEMENT_NOT_FOUND_POSITION, result.getPosition());
+		Assertions.assertFalse(result.isFound());
+		Assertions.assertEquals(ELEMENT_NOT_FOUND_POSITION, result.getPosition());
 	}
 	
 	@Test
@@ -34,8 +34,8 @@ public class BinarySearchTests {
 		int key = 10;
 		
 		SearchResult result = BinarySearch.create().search(key, MULTIPLE_ELEMENT_SEQUENCE);
-		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
+		Assertions.assertTrue(result.isFound());
+		Assertions.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test
@@ -43,8 +43,8 @@ public class BinarySearchTests {
 		int key = 50;
 		
 		SearchResult result = BinarySearch.create().search(key, MULTIPLE_ELEMENT_SEQUENCE);
-		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
+		Assertions.assertTrue(result.isFound());
+		Assertions.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
 	@Test
@@ -52,15 +52,15 @@ public class BinarySearchTests {
 		int key = 30;
 		
 		SearchResult result = BinarySearch.create().search(key, MULTIPLE_ELEMENT_SEQUENCE);
-		Assert.assertTrue(result.isFound());
-		Assert.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
+		Assertions.assertTrue(result.isFound());
+		Assertions.assertEquals(key, MULTIPLE_ELEMENT_SEQUENCE[result.getPosition()]);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void keyInEmptySequence() {
 		int key = 0;
-
-		BinarySearch.create().search(key, EMPTY_SEQUENCE);
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> BinarySearch.create().search(key, EMPTY_SEQUENCE));
 	}
 	
 	@Test
@@ -68,8 +68,8 @@ public class BinarySearchTests {
 		int key = 20;
 		
 		SearchResult result = BinarySearch.create().search(key, INVERTED_SEQUENCE);
-		Assert.assertFalse(result.isFound());
-		Assert.assertEquals(ELEMENT_NOT_FOUND_POSITION, result.getPosition());
+		Assertions.assertFalse(result.isFound());
+		Assertions.assertEquals(ELEMENT_NOT_FOUND_POSITION, result.getPosition());
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ public class BinarySearchTests {
 		int key = 20;
 		
 		SearchResult result = BinarySearch.create().search(key, UNSORTED_SEQUENCE);
-		Assert.assertFalse(result.isFound());
-		Assert.assertEquals(ELEMENT_NOT_FOUND_POSITION, result.getPosition());
+		Assertions.assertFalse(result.isFound());
+		Assertions.assertEquals(ELEMENT_NOT_FOUND_POSITION, result.getPosition());
 	}
 }
