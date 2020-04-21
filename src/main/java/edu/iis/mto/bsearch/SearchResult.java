@@ -1,6 +1,3 @@
-/**
- *
- */
 package edu.iis.mto.bsearch;
 
 import java.util.Objects;
@@ -24,13 +21,11 @@ public class SearchResult {
         return position;
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return Objects.hash(position);
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Override public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -44,8 +39,7 @@ public class SearchResult {
         return position == other.position;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
 
         return isFound() ? "( element at position " + position + ")" : "element not found";
     }
