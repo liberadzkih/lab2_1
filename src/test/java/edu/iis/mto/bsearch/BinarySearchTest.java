@@ -10,7 +10,7 @@ class BinarySearchTest {
 
     @Test
     void searchforelement_seqlen1_elementisinseq() {
-        int elementToBeFound = seqshort[1];
+        int elementToBeFound = seqshort[0];
         int i = 0;
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqshort);
         assertTrue(searchResult.isFound());
@@ -27,7 +27,7 @@ class BinarySearchTest {
     }
     @Test
     void searchforelement_seqlenlongerthen1_elementisfirst() {
-        int elementToBeFound = 4;
+        int elementToBeFound = 1;
         int i = 0;
 
         SearchResult searchResult = BinarySearch.create().search(elementToBeFound, seqlong);
