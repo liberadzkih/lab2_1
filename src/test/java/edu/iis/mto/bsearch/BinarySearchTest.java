@@ -12,6 +12,9 @@ class BinarySearchTest {
     SearchResult searchResult;
     private int[] singleElementSequence = {1};
     private int[] multipleElementsSequence = {1,2,3,4,5};
+    private int[] longestElementsSequence = {11,35,87,180,220,580,1200,23000,999999};
+    private int[] wrongOrderSequence = {854,780,790,750,2,331,999};
+    int[] emptySequence = {};
 
     @BeforeEach
     public void setup() {
@@ -60,6 +63,17 @@ class BinarySearchTest {
     }
 
     @Test
+    public void elementIsLastInLongestElementsSequence() {
+        int key = 999999;
+        int expectedPosition = longestElementsSequence.length-1;
+        searchResult = binarySearch.search(key, longestElementsSequence);
+
+        Assertions.assertEquals(true, searchResult.isFound());
+        Assertions.assertEquals(expectedPosition,searchResult.getPosition());
+        Assertions.assertEquals(key, longestElementsSequence[searchResult.getPosition()]);
+    }
+
+    @Test
     public void elementIsInTheMiddleOfMultipleElementsSequence() {
         int key = 3;
         int expectedPosition = 2;
@@ -68,6 +82,17 @@ class BinarySearchTest {
         Assertions.assertEquals(true, searchResult.isFound());
         Assertions.assertEquals(expectedPosition, searchResult.getPosition());
         Assertions.assertEquals(key, multipleElementsSequence[searchResult.getPosition()]);
+    }
+
+    @Test
+    public void elementIsInTheMiddleOfLongestElementsSequence() {
+        int key = 220;
+        int expectedPosition = 4;
+        searchResult = binarySearch.search(key, longestElementsSequence);
+
+        Assertions.assertEquals(true, searchResult.isFound());
+        Assertions.assertEquals(expectedPosition, searchResult.getPosition());
+        Assertions.assertEquals(key, longestElementsSequence[searchResult.getPosition()]);
     }
 
     @Test
@@ -91,18 +116,16 @@ class BinarySearchTest {
     public void sequenceIsEmpty() {
         int key = 3;
         int expectedPosition = -1;
-        int[] emptySequence = {};
-        searchResult = binarySearch.search(key, emptySequence);
 
-        Assertions.assertEquals(false, searchResult.isFound());
-        Assertions.assertEquals(expectedPosition, searchResult.getPosition());
+        assertThrows(IllegalArgumentException.class, () -> {
+            searchResult = binarySearch.search(key, emptySequence);
+        });
     }
 
     @Test
     public void elementsInSequenceAreInWrongOrderNotFound() {
-        int key = 1;
+        int key = 2;
         int expectedPosition = -1;
-        int[] wrongOrderSequence = {2,5,1};
         searchResult = binarySearch.search(key, wrongOrderSequence);
 
         //element is in sequence but it cannot be found
@@ -112,9 +135,8 @@ class BinarySearchTest {
 
     @Test
     public void elementsInSequenceAreInWrongOrderFound() {
-        int key = 1;
-        int expectedPosition = 0;
-        int[] wrongOrderSequence = {1,5,2};
+        int key = 999;
+        int expectedPosition = 6;
         searchResult = binarySearch.search(key, wrongOrderSequence);
 
         //element is in unsorted sequence, but still can be found
