@@ -14,4 +14,12 @@ public class BinarySearchTest {
         assertEquals(true, searchResult.isFound());
     }
 
+    @Test
+    public void singleElementSequence_noKeyInside() {
+        int seq[] = {8};
+        int key = 7;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals(false, searchResult.isFound());
+    }
+
 }
