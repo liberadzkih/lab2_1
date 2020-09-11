@@ -22,4 +22,12 @@ public class BinarySearchTest {
         assertEquals(false, searchResult.isFound());
     }
 
+    @Test
+    public void fewElementSequence_withKeyAtFirstPosition() {
+        int seq[] = {8, 9, 55, 162};
+        int key = 8;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals(0, searchResult.getPosition());
+    }
+
 }
