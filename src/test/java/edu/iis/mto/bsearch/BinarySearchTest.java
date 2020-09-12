@@ -113,4 +113,36 @@ public class BinarySearchTest {
         assertThrows(IllegalArgumentException.class, () -> BinarySearch.create().search(key, seq));
     }
 
+    @Test
+    public void fewNegativeElementsInSequence_keyInside_getPositionMethod() {
+        int seq[] = {-13, -11, -9, -4, -2};
+        int key = -2;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertThat(4, equalTo(searchResult.getPosition()));
+    }
+
+    @Test
+    public void fewNegativeElementsInSequence_noKeyInside_getPositionMethod() {
+        int seq[] = {-13, -11, -9, -4, -2};
+        int key = -6;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertThat(-1, equalTo(searchResult.getPosition()));
+    }
+
+    @Test
+    public void fewNegativeElementsInSequence_keyInside_isFoundMethod() {
+        int seq[] = {-13, -11, -9, -4, -2};
+        int key = -4;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertThat(true, equalTo(searchResult.isFound()));
+    }
+
+    @Test
+    public void fewNegativeElementsInSequence_noKeyInside_isFoundMethod() {
+        int seq[] = {-13, -11, -9, -4, -2};
+        int key = -6;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertThat(false, equalTo(searchResult.isFound()));
+    }
+
 }
