@@ -37,4 +37,20 @@ public class BinarySearchTest {
         SearchResult searchResult = BinarySearch.create().search(key, seq);
         assertEquals(seq.length - 1, searchResult.getPosition());
     }
+
+    @Test
+    public void fewElementSequence_withKeyAtMiddlePosition() {
+        int seq[] = {8, 9, 55, 162, 199};
+        int key = 55;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals((seq.length - 1) / 2, searchResult.getPosition());
+    }
+
+    @Test
+    public void fewElementSequence_noKeyInside() {
+        int seq[] = {8, 9, 55, 162, 199};
+        int key = 17;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals(false, searchResult.isFound());
+    }
 }
