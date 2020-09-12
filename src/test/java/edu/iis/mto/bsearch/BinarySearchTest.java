@@ -40,7 +40,7 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void fewElementsSequence_withKeyAtFirstPosition() {
+    public void fewElementsSequence_withKeyAtFirstPosition_getPositionMethod() {
         int seq[] = {8, 9, 55, 162};
         int key = 8;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
@@ -48,7 +48,15 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void fewElementsSequence_withKeyAtLastPosition() {
+    public void fewElementsSequence_withKeyAtFirstPosition_isFoundMethod() {
+        int seq[] = {8, 9, 55, 162};
+        int key = 8;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals(true, searchResult.isFound());
+    }
+
+    @Test
+    public void fewElementsSequence_withKeyAtLastPosition_getPositionMethod() {
         int seq[] = {8, 9, 55, 162};
         int key = 162;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
@@ -56,11 +64,27 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void fewElementsSequence_withKeyAtMiddlePosition() {
+    public void fewElementsSequence_withKeyAtLastPosition_isFoundMethod() {
+        int seq[] = {8, 9, 55, 162};
+        int key = 162;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals(true, searchResult.isFound());
+    }
+
+    @Test
+    public void fewElementsSequence_withKeyAtMiddlePosition_getPositionMethod() {
         int seq[] = {8, 9, 55, 162, 199};
         int key = 55;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
         assertEquals((seq.length - 1) / 2, searchResult.getPosition());
+    }
+
+    @Test
+    public void fewElementsSequence_withKeyAtMiddlePosition_isFoundMethod() {
+        int seq[] = {8, 9, 55, 162, 199};
+        int key = 55;
+        SearchResult searchResult = BinarySearch.create().search(key, seq);
+        assertEquals(true, searchResult.isFound());
     }
 
     @Test
