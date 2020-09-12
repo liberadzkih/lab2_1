@@ -2,6 +2,9 @@ package edu.iis.mto.bsearch;
 
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -12,7 +15,7 @@ public class BinarySearchTest {
         int seq[] = {8};
         int key = 8;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(true, searchResult.isFound());
+        assertThat(true, equalTo(searchResult.isFound()));
     }
 
     @Test
@@ -20,7 +23,7 @@ public class BinarySearchTest {
         int seq[] = {8};
         int key = 8;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(0, searchResult.getPosition());
+        assertThat(0, equalTo(searchResult.getPosition()));
     }
 
     @Test
@@ -28,7 +31,7 @@ public class BinarySearchTest {
         int seq[] = {8};
         int key = 7;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(false, searchResult.isFound());
+        assertThat(false, equalTo(searchResult.isFound()));
     }
 
     @Test
@@ -36,7 +39,7 @@ public class BinarySearchTest {
         int seq[] = {8};
         int key = 7;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(-1, searchResult.getPosition());
+        assertThat(-1, equalTo(searchResult.getPosition()));
     }
 
     @Test
@@ -44,7 +47,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162};
         int key = 8;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(0, searchResult.getPosition());
+        assertThat(0, equalTo(searchResult.getPosition()));
     }
 
     @Test
@@ -52,7 +55,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162};
         int key = 8;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(true, searchResult.isFound());
+        assertThat(true, equalTo(searchResult.isFound()));
     }
 
     @Test
@@ -60,7 +63,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162};
         int key = 162;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(seq.length - 1, searchResult.getPosition());
+        assertThat(seq.length - 1, equalTo(searchResult.getPosition()));
     }
 
     @Test
@@ -68,7 +71,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162};
         int key = 162;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(true, searchResult.isFound());
+        assertThat(true, equalTo(searchResult.isFound()));
     }
 
     @Test
@@ -76,7 +79,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162, 199};
         int key = 55;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals((seq.length - 1) / 2, searchResult.getPosition());
+        assertThat((seq.length - 1) / 2, equalTo(searchResult.getPosition()));
     }
 
     @Test
@@ -84,7 +87,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162, 199};
         int key = 55;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(true, searchResult.isFound());
+        assertThat(true, equalTo(searchResult.isFound()));
     }
 
     @Test
@@ -92,7 +95,7 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162, 199};
         int key = 17;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(false, searchResult.isFound());
+        assertThat(false, equalTo(searchResult.isFound()));
     }
 
     @Test
@@ -100,14 +103,13 @@ public class BinarySearchTest {
         int seq[] = {8, 9, 55, 162, 199};
         int key = 17;
         SearchResult searchResult = BinarySearch.create().search(key, seq);
-        assertEquals(-1, searchResult.getPosition());
+        assertThat(-1, equalTo(searchResult.getPosition()));
     }
 
     @Test
     public void zeroElementsSequence_testForException() {
         int seq[] = {};
         int key = 17;
-        //SearchResult searchResult = BinarySearch.create().search(key, seq);
         assertThrows(IllegalArgumentException.class, () -> BinarySearch.create().search(key, seq));
     }
 
